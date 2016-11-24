@@ -1,16 +1,4 @@
-/*
-*Laboratorio 3
-*Alumnos: Sergio Gonzalez, Cristobal Olivares.
-*Profesor: Nicolas Thériault.
-*Asignatura: Matemática Computacional.
-*Fecha de entrega: 12 de Enero del 2016.
-*
-*Instrucciones
-*Para poder compilar: abra la terminal, ubiquese en el directorio.
-*donde se encuentre el codigo e ingrese el comando "gcc 'nombre_archivo' -o 'archivo_ejecucion'.
-*Para poder ejecutar: Ingrese el comando "./archivo_ejecucion.
-*/
-
+//3.- Ciclo de Euler
 
 //Librerias
 #include <stdio.h>
