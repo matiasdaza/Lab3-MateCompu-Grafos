@@ -1,20 +1,18 @@
-/*************************************************************/
-/************************laboratorio 2************************/
 /*
-//Alumnos: Sergio Gonzalez, Cristobal Olivares.
-//Profesor: Nicolas Thériault.
-//Asignatura: Matemática Computacional.
-//Fecha de entrega: 4 de Enero del 2015.
-/*
-/*************************************************************/
-/************************Instrucciones************************/
-/*
-/*Para poder compilar: abra la terminal, ubiquese en el directorio.
-donde se encuentre el codigo e ingrese el comando "gcc 'nombre_archivo' -o 'archivo_ejecucion'.
-Para poder ejecutar: Ingrese el comando "./archivo_ejecucion.*/
+*Laboratorio 3
+*Alumnos: Sergio Gonzalez, Cristobal Olivares.
+*Profesor: Nicolas Thériault.
+*Asignatura: Matemática Computacional.
+*Fecha de entrega: 12 de Enero del 2016.
+*
+*Instrucciones
+*Para poder compilar: abra la terminal, ubiquese en el directorio.
+*donde se encuentre el codigo e ingrese el comando "gcc 'nombre_archivo' -o 'archivo_ejecucion'.
+*Para poder ejecutar: Ingrese el comando "./archivo_ejecucion.
+*/
 
-//************************************************************/
-//************************Librerias***************************/
+
+//Librerias
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -41,7 +39,7 @@ pila* pop(pila *lista)
 pila* push(pila *lista, int n)
 {
     pila* t;
-    t = calloc(n, sizeof(unsigned int*));
+    t = calloc(n, sizeof(int*));
     t->sig = lista;
     t->dest = n;
     lista = t;
@@ -61,16 +59,16 @@ void showeuler(pila *lista)
         return;
     while (pasa != 0)
     {
-        printf("->%d", pasa->dest);
+        printf("-%d", pasa->dest);
         pasa = pasa->sig;
     }
     printf("\n");
 }
 
-void print(unsigned int **p, int n);
-unsigned int **genera_matriz(int n, float s);
-void matriz_par(unsigned int **p, int n, float s);
-pila* euler(int n, int unsigned **p);
+void print(int **p, int n);
+int **genera_matriz(int n, float s);
+void matriz_par(int **p, int n, float s);
+pila* euler(int n, int **p);
 int v_cercano(int n, int vertices[]);
 int count_a(int vertice[], int n);
 
@@ -89,7 +87,7 @@ int main ()
  }
 
 
-void print(unsigned int **p, int n) //Se toman como argumentos la matriz enviada, largo y ancho de la matriz.
+void print(int **p, int n)  //Se toman como argumentos la matriz enviada, largo y ancho de la matriz.
 {
     int i, j;   //Varibles de enteros que sirven como indices en los for.
     for (i = 0; i < n; i = i + 1)   //For que recorre el largo de la matriz.
@@ -103,15 +101,15 @@ void print(unsigned int **p, int n) //Se toman como argumentos la matriz enviada
     printf("\n");
 }
 
-unsigned int **genera_matriz(int n, float s)    //Se toman como argumentos el largo y ancho de la matriz.           
+int **genera_matriz(int n, float s) //Se toman como argumentos el largo y ancho de la matriz.           
 {  
     srand(time(NULL));  //Semilla utilizada por la funcion rand() que genera numeros aleatorios.
     float aleatorio;    //Se inicializa la variable aleatorio, que almacena numeros al azar.                                              
     int i, j;   //Variables que sirven como indices en el for.
-    unsigned int **p;   //Se crea el 'puntero de punteros' P, que servira como matriz.i
-    p = calloc(n, sizeof(unsigned int*));                   
+    int **p;    //Se crea el 'puntero de punteros' P, que servira como matriz.i
+    p = calloc(n, sizeof(int*));                    
     for(i = 0; i < n; i = i + 1)    //For que recorre el largo del la fila.
-        p[i] = calloc(n, sizeof(unsigned int)); //Por cada un espacio que se avanze en la fila, se agregan tantos espacios                                  como ancho haya ingresado el usuario.
+        p[i] = calloc(n, sizeof(int));  //Por cada un espacio que se avanze en la fila, se agregan tantos espacios                                  como ancho haya ingresado el usuario.
     for(i = 0; i < n; i = i + 1)    //For que recorre fila de la matriz.    
     {
         for (j = 0 ; j < n; j = j + 1)  //For que recorre columna de la matriz.
@@ -129,10 +127,11 @@ unsigned int **genera_matriz(int n, float s)    //Se toman como argumentos el la
     print(p, n);    //Se mandan como argumentos la matriz de origen, su largo y ancho a la funcion que imprime matrices.
     printf("\n");
     matriz_par(p, n, s); //Llamada a la funcion que modifica la matriz generada a matriz par.
+    return 0;
 }
 
 
-void matriz_par(unsigned int **p, int n, float s)
+void matriz_par(int **p, int n, float s)
 {   
     int root, i = 0, j = 0, h = 0, c = 0, x = 0, l = 0, cont = 1, cont1 = 0, posicion, resto = 0, inicio, fin; //Se inicializan las vainicio, fin;riables de tipo int que seran utilizadas.
     inicio = clock();   //Variable que comienza a tomar el tiempo de ejecucion del programa.
@@ -336,7 +335,7 @@ void matriz_par(unsigned int **p, int n, float s)
 
 //Función que encuentra un ciclo de Euler, si al recorrer todos los vértices posibles de la matriz
 //encuentra un ciclo cerrado (todas las aristas recorridas y terminar en el vértice inicial) hay un ciclo de Euler.
-pila* euler(int n, int unsigned **p)
+pila* euler(int n, int **p)
 {
     int i, j, arista = 0;
     pila *ciclo = NULL;
