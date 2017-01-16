@@ -1,0 +1,14 @@
+
+
+Para compilar y ejecutar
+
+La lectura del programa es:
+
+Se debe compilar de la siguiente manera:
+
+gcc -o Ejecutar lab3.c 
+
+Para ejecutar :
+
+./Ejecutar
+
